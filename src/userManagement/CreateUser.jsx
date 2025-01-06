@@ -23,7 +23,7 @@ const Createuser = () => {
     e.preventDefault();
     // Send the form data to the server
     axios
-      .post("https://crud-mwcx.onrender.com/user/create", formData)
+      .post("https://backend1-wzsp.onrender.com/user/create", formData)
       .then((response) => {
         alert("User created successfully!");
         navigate("/"); // Redirect to home or user list after successful creation

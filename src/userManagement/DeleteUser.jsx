@@ -8,7 +8,7 @@ export const User = () => {
   // Fetching the user list when the component mounts
   useEffect(() => {
     axios
-      .get("https://crud-mwcx.onrender.com/user/fetch")
+      .get("https://backend1-wzsp.onrender.com/user/fetch")
       .then((data) => {
         setUsers(data.data); // Updating state with fetched data
       })
@@ -23,7 +23,7 @@ export const User = () => {
         return val.email === userEmail;
     })
     axios
-      .delete(`https://crud-mwcx.onrender.com/user/delete/${id._id}`)
+      .delete(`https://backend1-wzsp.onrender.com/user/delete/${id._id}`)
       .then((response) => {
         alert("User deleted successfully!"); // Show success message
         setUsers(users.filter((user) => user.email !== userEmail)); // Remove user from state

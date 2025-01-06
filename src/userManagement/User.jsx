@@ -7,7 +7,7 @@ export const User = () => {
     const [users, setUsers] = React.useState([])
 
     useEffect(() => {
-        axios.get('https://crud-mwcx.onrender.com/user/fetch')
+        axios.get('https://backend1-wzsp.onrender.com/user/fetch')
             .then(data => {
                 setUsers(data.data)
 
