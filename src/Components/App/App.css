@@ -1,0 +1,16 @@
+body{
+  background-image: url('../../assets/Speedometer.jpg');
+  background-position:60 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: aliceblue;
+}
+marquee{
+  background-color: rgb(0, 5, 8);
+  color: rgb(212, 200, 200);
+  background-size: cover;
+}
+a{
+  text-decoration: none;
+  color: aliceblue;
+}

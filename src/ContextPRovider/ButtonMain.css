@@ -1,0 +1,7 @@
+button:hover{
+    background-color: rgb(245, 9, 9);
+    background-size: 100%;
+}
+button{
+    border-radius: 10px;
+}
