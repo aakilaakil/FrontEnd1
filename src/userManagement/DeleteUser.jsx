@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 export const User = () => {
   const [users, setUsers] = useState([]);
   const Navigate = useNavigate();
+
   // Fetching the user list when the component mounts
   useEffect(() => {
     axios
@@ -19,9 +20,9 @@ export const User = () => {
 
   // Handle user deletion
   const handleDelete = (userEmail) => {
-    let id = users.find((val)=>{
-        return val.email === userEmail;
-    })
+    let id = users.find((val) => {
+      return val.email === userEmail;
+    });
     axios
       .delete(`https://backend1-wzsp.onrender.com/user/delete/${id._id}`)
       .then((response) => {
@@ -35,26 +36,11 @@ export const User = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        backgroundColor: "black", // Light background color
-        padding: "20px",
-        color: "white",
-        minHeight: "100vh",
-      }}
-    >
+    <div style={containerStyle}>
       <h1>User List</h1>
-      <ol>
-        <li>
-          <Link to="/CreateUser" style={{ color: "lightblue", fontSize: "18px" }}>
-            Click To Create User
-          </Link>
-        </li>
-      </ol>
-      <table border={5} style={{ width: "80%", marginTop: "20px" }}>
+    
+
+      <table style={tableStyle}>
         <thead>
           <tr>
             <th>Name</th>
@@ -72,16 +58,7 @@ export const User = () => {
                 <td>{user.address}</td>
                 <td>
                   {/* Delete button for each user */}
-                  <button
-                    onClick={() => handleDelete(user.email)}
-                    style={{
-                      padding: "5px 10px",
-                      backgroundColor: "#f44336",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "4px",
-                    }}
-                  >
+                  <button onClick={() => handleDelete(user.email)} style={deleteButtonStyle}>
                     Delete
                   </button>
                 </td>
@@ -96,11 +73,56 @@ export const User = () => {
           )}
         </tbody>
       </table>
-      <button onClick = {()=>{Navigate('/')}} >
-                    Click to Home
-                </button>
+
+      <button onClick={() => {Navigate('/')}} style={homeButtonStyle}>
+        Click to Home
+      </button>
     </div>
   );
+};
+
+const containerStyle = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  backgroundColor: "black", // Light background color
+  padding: "20px",
+  color: "white",
+  minHeight: "100vh",
+};
+
+const tableStyle = {
+  width: "80%",
+  marginTop: "20px",
+  borderCollapse: "collapse",
+  backgroundColor: "white", // White background for table
+  color: "black", // Black text for clarity
+  borderRadius: "4px",
+  border: "1px solid #ddd",
+};
+
+const linkStyle = {
+  color: "lightblue",
+  fontSize: "18px",
+  textDecoration: "none",
+};
+
+const deleteButtonStyle = {
+  padding: "5px 10px",
+  backgroundColor: "#f44336", // Red color for delete button
+  color: "white",
+  border: "none",
+  borderRadius: "4px",
+};
+
+const homeButtonStyle = {
+  padding: "10px 20px",
+  backgroundColor: "#007bff", // Blue color for home button
+  color: "white",
+  border: "none",
+  borderRadius: "4px",
+  marginTop: "20px",
+  cursor: "pointer",
 };
 
 export default User;

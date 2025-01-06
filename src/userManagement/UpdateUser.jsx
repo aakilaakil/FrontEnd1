@@ -81,114 +81,200 @@ export const User = () => {
 
   return (
     <div>
-      <ol>
-        <li>
-          <Link to="/CreateUser">Click To Create </Link>
-        </li>
-        <li>
-          <Link to="/UpdateUser">Click To UpdateUser </Link>
-        </li>
-        <li>
-          <Link to="/DeleteUser">Click To DeleteUser </Link>
-        </li>
-      </ol>
+      {/* Navbar with buttons */}
+      <nav style={styles.navStyle}>
+        <button style={styles.buttonStyle}>
+          <Link to="/CreateUser" style={styles.linkStyle}>Create User</Link>
+        </button>
+        <button style={styles.buttonStyle}>
+          <Link to="/UpdateUser" style={styles.linkStyle}>Update User</Link>
+        </button>
+        <button style={styles.buttonStyle}>
+          <Link to="/DeleteUser" style={styles.linkStyle}>Delete User</Link>
+        </button>
+      </nav>
 
       <h1>User:</h1>
 
-      <table border={5}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user._id}>
-              <td>
-                {editingUser === user._id ? (
-                  <input
-                    type="text"
-                    name="name"
-                    value={editedData.name}
-                    onChange={handleInputChange}
-                  />
-                ) : (
-                  user.name
-                )}
-              </td>
-              <td>
-                {editingUser === user._id ? (
-                  <input
-                    type="email"
-                    name="email"
-                    value={editedData.email}
-                    onChange={handleInputChange}
-                  />
-                ) : (
-                  user.email
-                )}
-              </td>
-              <td>
-                {editingUser === user._id ? (
-                  <input
-                    type="text"
-                    name="address"
-                    value={editedData.address}
-                    onChange={handleInputChange}
-                  />
-                ) : (
-                  user.address
-                )}
-              </td>
-              <td>
-                {editingUser === user._id ? (
-                  <button
-                    onClick={() => handleSave(user._id)}
-                    style={{
-                      padding: "5px 10px",
-                      backgroundColor: "#28a745",
-                      color: "white",
-                      borderRadius: "4px",
-                    }}
-                  >
-                    Save
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => handleEdit(user)}
-                    style={{
-                      padding: "5px 10px",
-                      backgroundColor: "#007bff",
-                      color: "white",
-                      borderRadius: "4px",
-                    }}
-                  >
-                    Update
-                  </button>
-                )}
-
-                <button
-                  onClick={() => handleDelete(user._id)}
-                  style={{
-                    padding: "5px 10px",
-                    backgroundColor: "#dc3545",
-                    color: "white",
-                    borderRadius: "4px",
-                    marginLeft: "10px",
-                  }}
-                >
-                  Delete
-                </button>
-              </td>
+      <div style={styles.containerStyle}>
+        <table style={styles.tableStyle}>
+          <thead>
+            <tr style={styles.headerRowStyle}>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user._id}>
+                <td>
+                  {editingUser === user._id ? (
+                    <input
+                      type="text"
+                      name="name"
+                      value={editedData.name}
+                      onChange={handleInputChange}
+                      style={styles.inputStyle}
+                    />
+                  ) : (
+                    user.name
+                  )}
+                </td>
+                <td>
+                  {editingUser === user._id ? (
+                    <input
+                      type="email"
+                      name="email"
+                      value={editedData.email}
+                      onChange={handleInputChange}
+                      style={styles.inputStyle}
+                    />
+                  ) : (
+                    user.email
+                  )}
+                </td>
+                <td>
+                  {editingUser === user._id ? (
+                    <input
+                      type="text"
+                      name="address"
+                      value={editedData.address}
+                      onChange={handleInputChange}
+                      style={styles.inputStyle}
+                    />
+                  ) : (
+                    user.address
+                  )}
+                </td>
+                <td>
+                  {editingUser === user._id ? (
+                    <button
+                      onClick={() => handleSave(user._id)}
+                      style={styles.saveButtonStyle}
+                    >
+                      Save
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleEdit(user)}
+                      style={styles.updateButtonStyle}
+                    >
+                      Update
+                    </button>
+                  )}
+
+                  <button
+                    onClick={() => handleDelete(user._id)}
+                    style={styles.deleteButtonStyle}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
+};
+
+// Styles
+const styles = {
+  // Navbar style
+  navStyle: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "100%",
+    marginBottom: "20px",
+  },
+
+  // Button style for navbar
+  buttonStyle: {
+    backgroundColor: "#007bff",
+    color: "white",
+    border: "none",
+    padding: "10px 20px",
+    fontSize: "16px",
+    cursor: "pointer",
+    flex: 1,
+    margin: "0 5px",
+    borderRadius: "4px",
+    textAlign: "center",
+  },
+
+  // Link style inside buttons
+  linkStyle: {
+    textDecoration: "none",
+    color: "white",
+  },
+
+  // Table container style
+  containerStyle: {
+    maxWidth: "80%",
+    margin: "0 auto",
+    textAlign: "center",
+    padding: "20px 0",
+  },
+
+  // Table style
+  tableStyle: {
+    width: "100%",
+    marginTop: "20px",
+    marginBottom: "20px",
+    borderCollapse: "color",
+    backgroundColor: "white",
+    marginLeft: "auto",
+    marginRight: "auto",
+    color: "black",
+    borderRadius: "4px",
+    border: "1px solid #ddd",
+  },
+
+  // Header row style
+  headerRowStyle: {
+    backgroundColor: "red",
+    color: "white",
+    fontWeight: "bold",
+    border: "1px solid black",
+  },
+
+  // Input style for editing
+  inputStyle: {
+    width: "100%",
+    padding: "5px",
+    fontSize: "14px",
+    borderRadius: "4px",
+    border: "1px solid #ddd",
+    boxSizing: "border-box",
+  },
+
+  // Save button style
+  saveButtonStyle: {
+    padding: "5px 10px",
+    backgroundColor: "#28a745",
+    color: "white",
+    borderRadius: "4px",
+  },
+
+  // Update button style
+  updateButtonStyle: {
+    padding: "5px 10px",
+    backgroundColor: "#007bff",
+    color: "white",
+    borderRadius: "4px",
+  },
+
+  // Delete button style
+  deleteButtonStyle: {
+    padding: "5px 10px",
+    backgroundColor: "#dc3545",
+    color: "white",
+    borderRadius: "4px",
+    marginLeft: "10px",
+  },
 };
 
 export default User;
